@@ -317,11 +317,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49574ac0e1c783e4483b14907284a532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 0
   spawnmanager: {fileID: 5667884}
-  speed: 5
-  Zspeed: 10
-  rb: {fileID: 0}
+  speed: 0
+  Rspeed: 0
+  Zspeed: 0
+  rb: {fileID: 656507209}
+  bullet: {fileID: 5003736929821287772, guid: acbefcd85aeed724f8d847ed85849fcf, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

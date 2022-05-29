@@ -8,6 +8,7 @@ public class charactercontrol : MonoBehaviour
     public float Rspeed = 5.0f;
     public float Zspeed = 0.1f;
     public Rigidbody rb;
+    public GameObject bullet;
     
 
     // Start is called before the first frame update
@@ -45,7 +46,10 @@ public class charactercontrol : MonoBehaviour
                 speed -= 2f;
             }
         }
-
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Instantiate(bullet, transform.position, transform.rotation);
+        }
 
         transform.position += transform.forward * speed * Time.deltaTime;
 
