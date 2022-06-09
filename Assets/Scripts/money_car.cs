@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-public class bullet_control : MonoBehaviour
+public class money_car : MonoBehaviour
 {
-    public float speed = 100.0f;
-    
+    public float speed = 5.0f;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +18,13 @@ public class bullet_control : MonoBehaviour
     }
     void Update()
     {
+        if (transform.position.z < player.transform.position.z)
+        {
+            speed += 5.0f;
+        }else
+        {
+            speed += 0f;
+        }
         transform.position += transform.forward * speed * Time.deltaTime;
-        
-        /*if (hit.transform.gameObject.tag == "Enemy")*/
     }
 }

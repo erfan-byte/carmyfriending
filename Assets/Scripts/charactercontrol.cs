@@ -2,14 +2,17 @@
 
 public class charactercontrol : MonoBehaviour
 {   
-    public float movementSpeed = 50f;
     public Spawnmanager spawnmanager;
-    public float speed = 5.0f;
-    public float Rspeed = 5.0f;
-    public float Zspeed = 0.1f;
+    public float speed;
+    public float movementSpeed;
+    public float Rspeed;
+    public float Zspeed;
+    public float range;
     public Rigidbody rb;
     public GameObject bullet;
-    
+
+    private bool shot;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,7 @@ public class charactercontrol : MonoBehaviour
         //transform.position += new Vector3(0, 0, Zspeed) * Time.deltaTime;
         if (speed < 20)
         {
-            speed += 1f;
+            speed += 0.5f;
         }
         else if (speed > 20)
         {
@@ -46,16 +49,26 @@ public class charactercontrol : MonoBehaviour
                 speed -= 2f;
             }
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        RaycastHit hit;
+        Ray shooting = new Ray(this.transform.position, Vector3.forward);
+
+        Debug.DrawRay(transform.position, Vector3.forward * range);
+        
+        if (!shot)
         {
-            Instantiate(bullet, transform.position, transform.rotation);
+            if (Physics.Raycast(shooting, out hit, range))
+            {
+                if (hit.collider.tag == "enemy")
+                {
+                    Debug.Log("hit true");
+                    Instantiate(bullet, this.transform.position, this.transform.rotation);
+                }
+            }
         }
 
-        transform.position += transform.forward * speed * Time.deltaTime;
-
         //output to log the position change
-        Debug.Log(transform.position);
-        Debug.Log(speed);
+        /*Debug.Log(transform.position);
+        Debug.Log(speed);*/
     }
 
     private void OnTriggerEnter(Collider other)
